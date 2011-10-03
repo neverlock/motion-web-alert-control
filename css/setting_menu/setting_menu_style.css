@@ -90,6 +90,7 @@ a {
 /* level 2 list */
 #nav_setting_menu ul {
 	display: none;
+	z-index: 100;
 
 	margin: 0;
 	padding: 0;

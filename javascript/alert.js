@@ -16,13 +16,6 @@ var js = '?alert_on=' + encodeURIComponent(document.getElementById('alert_on').c
 '&fr=' + encodeURIComponent(document.getElementById('fr').checked) +
 '&sa=' + encodeURIComponent(document.getElementById('sa').checked) +
 '&su=' + encodeURIComponent(document.getElementById('su').checked) +
-'&mo_old=' + encodeURIComponent(document.getElementById('mo_old').value) +
-'&tu_old=' + encodeURIComponent(document.getElementById('tu_old').value) +
-'&we_old=' + encodeURIComponent(document.getElementById('we_old').value) +
-'&th_old=' + encodeURIComponent(document.getElementById('th_old').value) +
-'&fr_old=' + encodeURIComponent(document.getElementById('fr_old').value) +
-'&sa_old=' + encodeURIComponent(document.getElementById('sa_old').value) +
-'&su_old=' + encodeURIComponent(document.getElementById('su_old').value) +
 '&mo_time_all_old=' + encodeURIComponent(document.getElementById('mo_time_all_old').value) +
 '&tu_time_all_old=' + encodeURIComponent(document.getElementById('tu_time_all_old').value) +
 '&we_time_all_old=' + encodeURIComponent(document.getElementById('we_time_all_old').value) +
@@ -30,13 +23,13 @@ var js = '?alert_on=' + encodeURIComponent(document.getElementById('alert_on').c
 '&fr_time_all_old=' + encodeURIComponent(document.getElementById('fr_time_all_old').value) +
 '&sa_time_all_old=' + encodeURIComponent(document.getElementById('sa_time_all_old').value) +
 '&su_time_all_old=' + encodeURIComponent(document.getElementById('su_time_all_old').value) +
-'&mo_time=' + encodeURIComponent(document.getElementsByName('mo_time').value) +
-'&tu_time=' + encodeURIComponent(document.getElementsByName('tu_time').value) +
-'&we_time=' + encodeURIComponent(document.getElementsByName('we_time').value) +
-'&th_time=' + encodeURIComponent(document.getElementsByName('th_time').value) +
-'&fr_time=' + encodeURIComponent(document.getElementsByName('fr_time').value) +
-'&sa_time=' + encodeURIComponent(document.getElementsByName('sa_time').value) +
-'&su_time=' + encodeURIComponent(document.getElementsByName('su_time').value) +
+'&mo_time=' + encodeURIComponent(document.getElementsByName('mo_time')[0].checked) +
+'&tu_time=' + encodeURIComponent(document.getElementsByName('tu_time')[0].checked) +
+'&we_time=' + encodeURIComponent(document.getElementsByName('we_time')[0].checked) +
+'&th_time=' + encodeURIComponent(document.getElementsByName('th_time')[0].checked) +
+'&fr_time=' + encodeURIComponent(document.getElementsByName('fr_time')[0].checked) +
+'&sa_time=' + encodeURIComponent(document.getElementsByName('sa_time')[0].checked) +
+'&su_time=' + encodeURIComponent(document.getElementsByName('su_time')[0].checked) +
 '&mo_time_old=' + encodeURIComponent(document.getElementById('mo_time_old').value) +
 '&tu_time_old=' + encodeURIComponent(document.getElementById('tu_time_old').value) +
 '&we_time_old=' + encodeURIComponent(document.getElementById('we_time_old').value) +
@@ -71,6 +64,7 @@ var js = '?alert_on=' + encodeURIComponent(document.getElementById('alert_on').c
 '&min_th_end=' + encodeURIComponent(document.getElementById('min_th_end').value) + 
 '&min_fr_end=' + encodeURIComponent(document.getElementById('min_fr_end').value) + 
 '&min_sa_end=' + encodeURIComponent(document.getElementById('min_sa_end').value) + 
-'&min_su_end=' + encodeURIComponent(document.getElementById('min_su_end').value) ;
+'&min_su_end=' + encodeURIComponent(document.getElementById('min_su_end').value) +
+'&alert_day=' + encodeURIComponent(document.getElementById('alert_day').value) ;
 return js;
 }

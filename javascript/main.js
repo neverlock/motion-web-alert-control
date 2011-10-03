@@ -34,6 +34,7 @@ $(function() {
 
 function loadXMLDoc(url)
 {
+document.getElementById("page").innerHTML='<h2><font color=red>&nbsp;&nbsp;<img src="images/loader.gif">&nbsp;&nbsp;Loading....</font></h2>';
 var xmlhttp;
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari

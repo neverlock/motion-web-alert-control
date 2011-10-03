@@ -1,5 +1,5 @@
 <?php
-$alert_current = ' class="current"';
+$alert_current = ' class="current" ';
 include('setting_menu.php');
 include('setting_function.php');
 ?>
@@ -44,7 +44,6 @@ function day($day_full,$day,$val_day,$time_all,$time){
  $html = 
  ' <tr>
     <td>
-      <input type="hidden" id="'.$day.'_old" value="'.$val_day.'">
       <input id="'.$day.'" type="checkbox" safari=1 '.$val_day.' 
 onclick="document.getElementsByName(\''.$day.'_time\')[0].disabled = (this.checked ? true : false);
 document.getElementsByName(\''.$day.'_time\')[1].disabled = (this.checked ? true : false);
@@ -99,35 +98,86 @@ $html .= '</td>
   </tr> ';
 return $html;
 }
-
   if (isset($_GET['alert_on'])){
-     $alert_on = $_GET['alert_on'];
-     $intrude_on = $_GET['intrude_on'];
-     $powerdown_on = $_GET['powerdown_on'];
-     $sms_on = $_GET['sms_on'];
-     $twitter_on = $_GET['twitter_on'];
-     $alert_on_old = $_GET['alert_on_old'];
-     $intrude_on_old = $_GET['intrude_on_old'];
-     $powerdown_on_old = $_GET['powerdown_on_old'];
-     $sms_on_old = $_GET['sms_on_old'];
-     $twitter_on_old = $_GET['twitter_on_old'];
 
-     $alert_on = ("$alert_on" == "true" ? "1" : "0");
-     $alert_on_old = ($alert_on_old == "checked" ? "1" : "0");
-     $intrude_on = ("$intrude_on" == "true" ? "1" : "0");
-     $intrude_on_old = ($intrude_on_old == "checked" ? "1" : "0");
-     $powerdown_on = ("$powerdown_on" == "true" ? "1" : "0");
-     $powerdown_on_old = ($powerdown_on_old == "checked" ? "1" : "0");
-     $sms_on = ("$sms_on" == "true" ? "1" : "0");
-     $sms_on_old = ($sms_on_old == "checked" ? "1" : "0");
-     $twitter_on = ("$twitter_on" == "true" ? "1" : "0");
-     $twitter_on_old = ($twitter_on_old == "checked" ? "1" : "0");
+     $alert_on = ($_GET['alert_on'] == "true" ? "1" : "0");
+     $intrude_on = ($_GET['intrude_on'] == "true" ? "1" : "0");
+     $powerdown_on = ($_GET['powerdown_on'] == "true" ? "1" : "0");
+     $sms_on = ($_GET['sms_on'] == "true" ? "1" : "0");
+     $twitter_on = ($_GET['twitter_on'] == "true" ? "1" : "0");
+
+     $alert_on_old = ($_GET['alert_on_old'] == "checked" ? "1" : "0");
+     $intrude_on_old = ($_GET['intrude_on_old'] == "checked" ? "1" : "0");
+     $powerdown_on_old = ($_GET['powerdown_on_old'] == "checked" ? "1" : "0");
+     $sms_on_old = ($_GET['sms_on_old'] == "checked" ? "1" : "0");
+     $twitter_on_old = ($_GET['twitter_on_old'] == "checked" ? "1" : "0");
+
+     $mo = ($_GET['mo'] == "true" ? "Mon," : "");
+     $tu = ($_GET['tu'] == "true" ? "Tue," : "");
+     $we = ($_GET['we'] == "true" ? "Wed," : "");
+     $th = ($_GET['th'] == "true" ? "Thu," : "");
+     $fr = ($_GET['fr'] == "true" ? "Fri," : "");
+     $sa = ($_GET['sa'] == "true" ? "Sat," : "");
+     $su = ($_GET['su'] == "true" ? "Sun" : "");
+
+     $mo_time_all_old = $_GET['mo_time_all_old'];
+     $tu_time_all_old = $_GET['tu_time_all_old'];
+     $we_time_all_old = $_GET['we_time_all_old'];
+     $th_time_all_old = $_GET['th_time_all_old'];
+     $fr_time_all_old = $_GET['fr_time_all_old'];
+     $sa_time_all_old = $_GET['sa_time_all_old'];
+     $su_time_all_old = $_GET['su_time_all_old'];
+
+     $mo_time_all = ($_GET['mo_time'] == "true" ? "1" : "0"); 
+     $tu_time_all = ($_GET['tu_time'] == "true" ? "1" : "0"); 
+     $we_time_all = ($_GET['we_time'] == "true" ? "1" : "0"); 
+     $th_time_all = ($_GET['th_time'] == "true" ? "1" : "0"); 
+     $fr_time_all = ($_GET['fr_time'] == "true" ? "1" : "0"); 
+     $sa_time_all = ($_GET['sa_time'] == "true" ? "1" : "0"); 
+     $su_time_all = ($_GET['su_time'] == "true" ? "1" : "0"); 
+
+     $mo_time_old = $_GET['mo_time_old'];
+     $tu_time_old = $_GET['tu_time_old'];
+     $we_time_old = $_GET['we_time_old'];
+     $th_time_old = $_GET['th_time_old'];
+     $fr_time_old = $_GET['fr_time_old'];
+     $sa_time_old = $_GET['sa_time_old'];
+     $su_time_old = $_GET['su_time_old'];
+
+     $alert_day = $_GET['alert_day'];
+
+     $mo_time = $_GET['hr_mo_start'].":".$_GET['min_mo_start']."-".$_GET['hr_mo_end'].":".$_GET['min_mo_end'];
+     $tu_time = $_GET['hr_tu_start'].":".$_GET['min_tu_start']."-".$_GET['hr_tu_end'].":".$_GET['min_tu_end'];
+     $we_time = $_GET['hr_we_start'].":".$_GET['min_we_start']."-".$_GET['hr_we_end'].":".$_GET['min_we_end'];
+     $th_time = $_GET['hr_th_start'].":".$_GET['min_th_start']."-".$_GET['hr_th_end'].":".$_GET['min_th_end'];
+     $fr_time = $_GET['hr_fr_start'].":".$_GET['min_fr_start']."-".$_GET['hr_fr_end'].":".$_GET['min_fr_end'];
+     $sa_time = $_GET['hr_sa_start'].":".$_GET['min_sa_start']."-".$_GET['hr_sa_end'].":".$_GET['min_sa_end'];
+     $su_time = $_GET['hr_su_start'].":".$_GET['min_su_start']."-".$_GET['hr_su_end'].":".$_GET['min_su_end'];
 
      set_config('ALERT_ON=',$alert_on,$alert_on_old);
      set_config('INTRUDE_ON=',$intrude_on,$intrude_on_old);
      set_config('POWERDOWN_ON=',$powerdown_on,$powerdown_on_old);
      set_config('SMS_ON=',$sms_on,$sms_on_old);
      set_config('TWITTER_ON=',$twitter_on,$twitter_on_old);
+
+     set_config('ALERT_DAY=',"$mo$tu$we$th$fr$sa$su",$alert_day);
+
+     set_config('MO_ALL_TIME=',"$mo_time_all",$mo_time_all_old);
+     set_config('TU_ALL_TIME=',"$tu_time_all",$tu_time_all_old);
+     set_config('WE_ALL_TIME=',"$we_time_all",$we_time_all_old);
+     set_config('TH_ALL_TIME=',"$th_time_all",$th_time_all_old);
+     set_config('FR_ALL_TIME=',"$fr_time_all",$fr_time_all_old);
+     set_config('SA_ALL_TIME=',"$sa_time_all",$sa_time_all_old);
+     set_config('SU_ALL_TIME=',"$su_time_all",$su_time_all_old);
+
+     set_config('MO_TIME=',"$mo_time",$mo_time_old);
+     set_config('TU_TIME=',"$tu_time",$tu_time_old);
+     set_config('WE_TIME=',"$we_time",$we_time_old);
+     set_config('TH_TIME=',"$th_time",$th_time_old);
+     set_config('FR_TIME=',"$fr_time",$fr_time_old);
+     set_config('SA_TIME=',"$sa_time",$sa_time_old);
+     set_config('SU_TIME=',"$su_time",$su_time_old);
+     
      }
 	$mo_all_time = load_config('MO_ALL_TIME=');
 	$tu_all_time = load_config('TU_ALL_TIME=');
@@ -137,13 +187,14 @@ return $html;
 	$sa_all_time = load_config('SA_ALL_TIME=');
 	$su_all_time = load_config('SU_ALL_TIME=');
 
-	$mo_val_day = (`cat $path_conf | grep Mon` == "" ? "" : "checked"); 
-	$tu_val_day = (`cat $path_conf | grep Tue` == "" ? "" : "checked"); 
-	$we_val_day = (`cat $path_conf | grep Wed` == "" ? "" : "checked"); 
-	$th_val_day = (`cat $path_conf | grep Thu` == "" ? "" : "checked"); 
-	$fr_val_day = (`cat $path_conf | grep Fri` == "" ? "" : "checked"); 
-	$sa_val_day = (`cat $path_conf | grep Sat` == "" ? "" : "checked"); 
-	$su_val_day = (`cat $path_conf | grep Sun` == "" ? "" : "checked"); 
+	$alert_day = load_config('ALERT_DAY=');
+	$mo_val_day = (`cat $path_conf | grep ALERT_DAY= | grep Mon` == "" ? "" : "checked"); 
+	$tu_val_day = (`cat $path_conf | grep ALERT_DAY= | grep Tue` == "" ? "" : "checked"); 
+	$we_val_day = (`cat $path_conf | grep ALERT_DAY= | grep Wed` == "" ? "" : "checked"); 
+	$th_val_day = (`cat $path_conf | grep ALERT_DAY= | grep Thu` == "" ? "" : "checked"); 
+	$fr_val_day = (`cat $path_conf | grep ALERT_DAY= | grep Fri` == "" ? "" : "checked"); 
+	$sa_val_day = (`cat $path_conf | grep ALERT_DAY= | grep Sat` == "" ? "" : "checked"); 
+	$su_val_day = (`cat $path_conf | grep ALERT_DAY= | grep Sun` == "" ? "" : "checked"); 
 
 	$mo_time = load_config('MO_TIME=');
 	$tu_time = load_config('TU_TIME=');
@@ -167,7 +218,7 @@ load_alert() +
 '' ); alert(':: Save Setting ::'); return false">
 <div class="setting_div" >
 <fieldset class="fieldset_setting">
-<legend class="legend_setting">Alert Setting</legend>
+<legend class="legend_setting">Date of Alert - On/Off Setting</legend>
 <table class="table_setting">
   <tr>
     <td height="30" width="150" class="td_right">System Alert</td>
@@ -212,6 +263,7 @@ load_alert() +
 
 <fieldset class="fieldset_setting">
 <legend class="legend_setting">Date Of Alert</legend>
+<input type="hidden" id="alert_day" value="<? echo $alert_day;?>">
 <table class="table_setting1">
 <!--day--!>
 <?
