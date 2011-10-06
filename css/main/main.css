@@ -1,3 +1,23 @@
+.no_show{
+  margin-top:5px;
+  height:1px;
+  border:none;
+}
+.hr_line{
+  margin-bottom:5px;
+  margin-top:5px;
+  color:#aaaaaa;
+  background-color:#aaaaaa;
+  height:1px;
+  border:none;
+}
+.div_tab50{
+   margin-left:50px;
+}
+.div_in_leg{
+   margin-top:5px;
+   margin-left:60px;
+}
 .hr_alert_day{
    width:400px;
    margin-top:10px;
@@ -11,7 +31,11 @@
    position:relative;vertical-align:top;
    font: 85% "Trebuchet MS", sans-serif;
 }
-
+.table_0{
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  font: 100% "Trebuchet MS", sans-serif;
+}
 .table_setting td 
 {
    position:relative;vertical-align:top;
@@ -19,6 +43,7 @@
 }
 .td_right {text-align: right;} 
 .td_top {position:relative;vertical-align:top;} 
+.td_right_top {position:relative;vertical-align:top;text-align: right;} 
 .td_center { text-align: center; }
 .setting_div{
    padding-top:10px;

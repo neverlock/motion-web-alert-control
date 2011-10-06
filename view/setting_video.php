@@ -1,86 +1,101 @@
 <?php
-$sms_current = ' class="current"';
+$video_current = ' class="current"';
 include('setting_menu.php');
 include('setting_function.php');
 ?>
 <?
-  if (isset($_GET['url'])){
-     $url = $_GET['url'];
-     $p_data = $_GET['p_data'];
-     $user = $_GET['user'];
-     $pass = $_GET['pass'];
-     $url_old = $_GET['url_old'];
-     $p_data_old = $_GET['p_data_old'];
-     $user_old = $_GET['user_old'];
-     $pass_old = $_GET['pass_old'];
+function m($name,$select,$dis){
+  $dis = ("$dis" == "1" ? "" : "disabled=\"disabled\"");
+  $m = "<select id=\"$name\" $dis>";
+  for($i=0;$i<=5;$i++){
+    for($j=0;$j<=9;$j++){
+      if($select == "$i$j"){
+        $m .= "\n<option value='$i$j' SELECTED>$i$j</option>";
+      }else{
+        $m .= "\n<option value='$i$j'>$i$j</option>";
+      }
+      if("$i$j" == "59"){
+        $m .= "\n</select>";
+        return $m;
+      }
+    }
+  }
+}
 
-     set_config('SMS_GATEWAY_URL=',$url,$url_old);
-     set_config('SMS_GATEWAY_POST=',$p_data,$p_data_old);
-     set_config('SMS_GATEWAY_USER=',$user,$user_old);
-     set_config('SMS_GATEWAY_PASSWORD=',$pass,$pass_old);
+  if (isset($_GET['waits'])){
 
+     set_config('WAIT=',$_GET['waits'],$_GET['waits_old']);
+     set_config('REMOVE_DAY=',$_GET['days'],$_GET['days_old']);
+     set_config('REMOVE_SIZE=',$_GET['size'],$_GET['size_old']);
      }
-	$url = load_config('SMS_GATEWAY_URL=');
-	$p_data = load_config('SMS_GATEWAY_POST=');
-	$user = load_config('SMS_GATEWAY_USER=');
-	$pass = load_config('SMS_GATEWAY_PASSWORD=');
+	$waits = load_config('WAIT=');
+	$days = load_config('REMOVE_DAY=');
+	$size = load_config('REMOVE_SIZE=');
 ?>
 <form autocomplete="off" onsubmit="loadXMLDoc(
-'view/setting_sms.php?url=' +
- encodeURIComponent(document.getElementById('sms_gateway_url').value) +
-'&p_data=' + encodeURIComponent(document.getElementById('sms_gateway_postdata').value) +
-'&user=' + encodeURIComponent(document.getElementById('sms_gateway_user').value) +
-'&pass=' + encodeURIComponent(document.getElementById('sms_gateway_password').value) +
-'&url_old=' +  encodeURIComponent(document.getElementById('sms_gateway_url_old').value) +
-'&p_data_old=' + encodeURIComponent(document.getElementById('sms_gateway_postdata_old').value) +
-'&user_old=' + encodeURIComponent(document.getElementById('sms_gateway_user_old').value) +
-'&pass_old=' + encodeURIComponent(document.getElementById('sms_gateway_password_old').value)
- ); alert(':: Save Setting ::'); return false">
+'view/setting_video.php' +
+'?waits=' + encodeURIComponent(document.getElementById('waits').value) +
+'&waits_old=' + encodeURIComponent(document.getElementById('waits_old').value) +
+'&days=' + encodeURIComponent(document.getElementById('days').value) +
+'&days_old=' + encodeURIComponent(document.getElementById('days_old').value) +
+'&size=' + encodeURIComponent(document.getElementById('size').value) +
+'&size_old=' + encodeURIComponent(document.getElementById('size_old').value) +
+ ''); alert(':: Save Setting ::'); return false">
 <div class="setting_div" >
 <fieldset class="fieldset_setting">
-<legend class="legend_setting">SMS-Gateway Setting</legend>
+<legend class="legend_setting">Video Setting</legend>
 <table class="table_setting">
   <tr>
-    <td width="150" class="td_right">URL</td>
-    <td width="10">:</td>
-    <td>
-      <input type="hidden" id="sms_gateway_url_old" value="<? echo $url;?>">
-      <textarea id="sms_gateway_url"rows="2" cols="50"><? echo $url;?></textarea> 
-    </td>
-  </tr>
-  <tr>
-    <td class="td_right">Post Data</td>
-    <td>:</td>
-    <td>
-      <input type="hidden" id="sms_gateway_postdata_old" value="<? echo $p_data;?>"> 
-      <textarea id="sms_gateway_postdata" rows="3" cols="50"><? echo $p_data;?></textarea> 
-    </td>
-  </tr>
-  <tr>
-    <td class="td_right"></td>
-    <td></td>
+    <td width="150" class="td_right"></td>
+    <td width="10" ></td>
     <td>
     <div class="example_post">
-    <font color="black" size="1"><b>Post Data Example.</b><br />Username=<font color="red">$USERNAME</font>&Password=<font color="red">$PASSWORD</font>&Text=<font color="red">$MESSAGE</font><br />&PhoneNumber=<font color="red">$PhoneNO</font>&SMSMode=E&SName=CCTV</font><br />
+    <font color="black" size="1"><b>Waits.</b><br />Waits For Detect motion <font color="red">(Second)</font> Default=30<br />
     </div>
     </td>
   </tr>
   <tr>
-    <td class="td_right">User</td>
+    <td class="td_right">Waits</td>
     <td>:</td>
+    <td height="30">
+      <input type="hidden" id="waits_old" value="<? echo $waits;?>">
+      <? echo m('waits',$waits,'1'); ?> <label> sec.</label>
+    </td>
+  </tr>
+<tr><td></td><td colspan="2"><hr class="hr_alert_day"></td></tr>
+  <tr>
+    <td width="150" class="td_right"></td>
+    <td width="10" ></td>
     <td>
-      <input id="sms_gateway_user_old" type="hidden" value="<? echo $user; ?>"> 
-      <input id="sms_gateway_user" type="text" value="<? echo $user; ?>"> 
-      <font color="black" size="1" >$USERNAME</font>
+    <div class="example_post">
+    <font color="black" size="1"><b>Days.</b><br />Day Of Remove Video <font color="red">(Days)</font> Default=90<br />
+    </div>
     </td>
   </tr>
   <tr>
-    <td class="td_right">Password</td>
+    <td class="td_right">Days</td>
     <td>:</td>
+    <td height="30">
+      <input type="hidden" id="days_old" value="<? echo $days;?>">
+      <input id="days" type="text" size="7"  value="<? echo $days; ?>"> <label> Days.</label>
+    </td>
+  </tr>
+<tr><td></td><td colspan="2"><hr class="hr_alert_day"></td></tr>
+  <tr>
+    <td width="150" class="td_right"></td>
+    <td width="10" ></td>
     <td>
-      <input id="sms_gateway_password_old" type="hidden" value="<? echo $pass; ?>"> 
-      <input id="sms_gateway_password" type="password" value="<? echo $pass; ?>"> 
-      <font color="black" size="1" >$PASSWORD</font>
+    <div class="example_post">
+    <font color="black" size="1"><b>Size.</b><br />Size Of Remove Video when Minimum Hard disk size<font color="red">(MB)</font> Default=100<br />
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="td_right">Size</td>
+    <td>:</td>
+    <td height="30">
+      <input type="hidden" id="size_old" value="<? echo $size;?>">
+      <input id="size" type="text" size="7"  value="<? echo $size; ?>"> <label> MB.</label>
     </td>
   </tr>
   <tr>

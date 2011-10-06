@@ -29,7 +29,7 @@ include('setting_function.php');
 '&short_url_key_old=' + encodeURIComponent(document.getElementById('short_url_key_old').value) +
 '&imgur_key_old=' + encodeURIComponent(document.getElementById('imgur_key_old').value) +
 '&imgur_key=' + encodeURIComponent(document.getElementById('imgur_key').value) +
- ''); alert(':: Save Setting ::'); return false">
+ ''); apprise(':: Save Setting ::'); return false">
 <div class="setting_div" >
 <fieldset class="fieldset_setting">
 <legend class="legend_setting">API / Add-on Setting</legend>

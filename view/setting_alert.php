@@ -215,7 +215,7 @@ return $html;
 <form autocomplete="off" onsubmit="loadXMLDoc(
 'view/setting_alert.php' +
 load_alert() +
-'' ); alert(':: Save Setting ::'); return false">
+'' ); apprise(':: Save Setting ::'); return false">
 <div class="setting_div" >
 <fieldset class="fieldset_setting">
 <legend class="legend_setting">Date of Alert - On/Off Setting</legend>

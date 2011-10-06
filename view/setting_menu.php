@@ -17,8 +17,8 @@ session_start();
   <li<? echo $video_current; ?>><a href="#" onclick="return false">Video</a>
     <ul>
       <li><a href="#" onclick="loadXMLDoc('view/setting_video.php') ; return false">Video Setting</a></li>
-      <li><a href="#">Add Group</a></li>
-      <li><a href="#">Add Video</a></li>
+      <li><a href="#" onclick="loadXMLDoc('view/setting_video_group.php') ; return false">Add / Edit Group</a></li>
+      <li><a href="#" onclick="loadXMLDoc('view/setting_video_video.php') ; return false">Add / Edit Video</a></li>
     </ul>
   </li>	
     <li<? echo $layout_current; ?>><a href="#" onclick="loadXMLDoc('index.html') ; return false">Layout</a></li>

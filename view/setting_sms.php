@@ -35,7 +35,7 @@ include('setting_function.php');
 '&p_data_old=' + encodeURIComponent(document.getElementById('sms_gateway_postdata_old').value) +
 '&user_old=' + encodeURIComponent(document.getElementById('sms_gateway_user_old').value) +
 '&pass_old=' + encodeURIComponent(document.getElementById('sms_gateway_password_old').value)
- ); alert(':: Save Setting ::'); return false">
+ ); apprise(':: Save Setting ::'); return false">
 <div class="setting_div" >
 <fieldset class="fieldset_setting">
 <legend class="legend_setting">SMS-Gateway Setting</legend>
