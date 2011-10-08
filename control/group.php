@@ -7,6 +7,7 @@
   }
   /*global*/
   $group_conf = "/etc/motion-web-alert-plugin/group/group.conf";
+  $group_thread_conf = "/etc/motion-web-alert-plugin/group/group-thread.conf ";
 
   function rep_spc($str){
     $tmp = '';
@@ -73,7 +74,8 @@
 
   function del_group(){
     global $group_conf;
-    $g_n = $_POST['group_name'];
+    global $group_thread_conf;
+    $g_n = trim($_POST['group_name']);
     $id = time(); 
     if (`cat $group_conf | grep "^$g_n$"` == ''){
       exit();
@@ -81,6 +83,9 @@
     `cat $group_conf | grep -v "^$g_n$" > /tmp/$id`;
     `cat /tmp/$id > $group_conf`;
     `rm /tmp/$id`;
+     $old = rep_spc($g_n);
+     $new = "Undefined Group";  
+    `sed -i "s/$old$/$new/g" $group_thread_conf`;
     if (`cat $group_conf | grep "^$g_n$"` == ''){
       echo 'deleted';
     }

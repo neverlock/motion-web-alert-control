@@ -104,8 +104,9 @@ function add_video(id){
   });
 }
 
-function cf_edit_video(id,t,g,n,on,u,p) {
-  $.post('control/video.php',{action: 'cf_edit',id: id,t: t,g:g,n:n,on:on,u:u,p:p},function(result){
+function cf_edit_video(id,t) {
+  var g = $('#tg_'+id).val();
+  $.post('control/video.php',{action: 'cf_edit',id: id,t: t,g:g},function(result){
     if(result != ''){
       $('#de_'+id).html(result);
       checkbox_on();
@@ -129,7 +130,19 @@ function cf_del_video(id) {
    });
 }
 
-function edit_video (id) {
-  apprise(id);
+function edit_video (f_id,id) {
+  var data = $('#'+f_id).serialize();
+  var port = $('input:text[name=port]','#'+f_id).val();
+  var input = $('[name=dev_ip]','#'+f_id).val();
+  var group = $('select[name=group]','#'+f_id).val();
+  $.post('control/video.php',data,function(result){
+    if(result == 'edited'){
+       $('#tv_'+id).attr('title', input+' , port:'+port);
+       $('#tg_'+id).attr('title', input+' , port:'+port);
+       $('#tg_'+id).val(group);
+       $('#'+f_id).remove();
+    }else if(result == 'logout'){ window.location = 'index.php';
+    }else { apprise('Edit failed!') ;}
+  });
 }
 

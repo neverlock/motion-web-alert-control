@@ -23,7 +23,7 @@ include('setting_menu.php');
     return $sg_val;
   }
 
-  function gen_video($id,$group,$type,$dt1,$dt2,$on,$u,$p){
+  function gen_video($id,$group,$type,$dt1,$dt2,$on){
    $gen_val =
      '<div id="dv_'.$id.'">
       <hr class="no_show">
@@ -33,7 +33,7 @@ include('setting_menu.php');
         title="'.$dt2.' , Port:100'.$id.'">
       <input id="cv_'.$id.'" type="checkbox" '.$on.' disabled>
       <input id="be_'.$id.'" type="button" value="Edit" class="button blue small"
-        onclick="cf_edit_video(\''.$id.'\',\''.$type.'\',\''.$group.'\',\''.trim($dt2).'\',\''.$on.'\',\''.trim($u).'\',\''.trim($p).'\')">
+        onclick="cf_edit_video(\''.$id.'\',\''.$type.'\')">
       <input id="bd_'.$id.'" type="button" value="Delete" class="button red small"
         onclick="cf_del_video(\''.$id.'\')">
       <div id="de_'.$id.'"></div></div>';
@@ -53,9 +53,7 @@ include('setting_menu.php');
        $on = ($on == '' ? 'checked' : '');
        $dt_val = split(' ',$dt);
        $type = ($dt_val[0] == "videodevice" ? "dev" : "ip");
-       $user_pass = `cat $thread_path/thread$id.conf | grep netcam_userpass | awk -F' ' '{print $2}'`;
-       $u_p = split(':',$user_pass);
-       $video .= gen_video($id,$id_g[1],$type,$dt_val[0],$dt_val[1],$on,$u_p[0],$u_p[1]);
+       $video .= gen_video($id,$id_g[1],$type,$dt_val[0],$dt_val[1],$on);
     }
   }
 ?>

@@ -39,19 +39,21 @@
     $num = ($num < 10 ? "0$num" : "$num");
     echo trim($num);
   }
-/*
-  function set_config($old,$new){
-    global $group_conf;
+
+  function set_config($id,$old,$new){
+    global $group_thread_conf;
     $new = trim($new);
     $old = trim($old);
     if( $new <> $old ) {
+      $msg_o = "$id=$old"; 
+      $msg = "$id=$new"; 
       $old = rep_spc($old);
       $new = rep_spc($new);
-      `sed -i "s/^$old$/$new/g" $group_conf`;
+      `sed -i "s/^$msg_o$/$msg/g" $group_thread_conf`;
     }
   }
-*/
-  function gen_video($id,$group,$type,$dt,$on,$u,$p){
+
+  function gen_video($id,$group,$type,$dt,$on){
    $gen_val =
      '<div id="dv_'.$id.'">
       <hr class="no_show">
@@ -61,7 +63,7 @@
         title="'.$dt.' , Port:100'.$id.'">
       <input id="cv_'.$id.'" type="checkbox" '.$on.' disabled>
       <input id="be_'.$id.'" type="button" value="Edit" class="button blue small"
-        onclick="cf_edit_video(\''.$id.'\',\''.$type.'\',\''.$group.'\',\''.trim($dt).'\',\''.$on.'\',\''.trim($u).'\',\''.trim($p).'\')">
+        onclick="cf_edit_video(\''.$id.'\',\''.$type.'\')">
       <input id="bd_'.$id.'" type="button" value="Delete" class="button red small"
         onclick="cf_del_video(\''.$id.'\')">
       <div id="de_'.$id.'"></div></div>';
@@ -88,18 +90,30 @@
   }
 
   function cf_edit_video(){
+    global $thread_path;
     $id  = $_POST['id'];
     $type  = $_POST['t'];
     $group  = $_POST['g'];
-    $dt  = $_POST['n'];
-    $on  = $_POST['on'];
-    $u  = $_POST['u'];
-    $p  = $_POST['p'];
+
+    $user_pass = `cat $thread_path/thread$id.conf | grep netcam_userpass | awk -F' ' '{print $2}'`;
+    $u_p = split(':',$user_pass);
+    $u  = $u_p[0];
+    $p  = $u_p[1];
+
+    $read_dt = `cat $thread_path/thread$id.conf | head -1`;
+    $dt_val = split(' ',$read_dt);
+    $dt = $dt_val[1];
+
+    $on = `cat $thread_path/thread$id.conf | grep "#on_movie_start"`;
+    $on = ($on == '' ? 'checked' : '');
+
     if($type == "dev"){
       $html = 
 	'<form id="f_dev_'.$id.'">
+          <input type="hidden" name="id" value="'.$id.'">
           <input type="hidden" name="type" value="dev">
           <input type="hidden" name="action" value="edit">
+          <input type="hidden" name="g_old" value="'.$group.'">
           <table class="table_0">
             <tr>
               <td class="td_right"><label>device</label></td>
@@ -133,7 +147,7 @@
             <tr>
               <td height="20" colspan="2"></td>
               <td>
-                <input type="button" class="button green small" value="Save" onclick="edit_video(\''.$id.'\')">
+                <input type="button" class="button green small" value="Save" onclick="edit_video(\'f_dev_'.$id.'\',\''.$id.'\')">
                 <input type="button" class="button red small" value="Cancel" onclick="$(\'#f_dev_'.$id.'\').remove()">
               </td>
             </tr>
@@ -142,8 +156,10 @@
     }else if($type == "ip"){
        $html = 
 	 '<form id="f_ip_'.$id.'">
+          <input type="hidden" name="id" value="'.$id.'">
           <input type="hidden" name="type" value="ip">
-          <input type="hidden" name="action" value="add">
+          <input type="hidden" name="action" value="edit">
+          <input type="hidden" name="g_old" value="'.$group.'">
           <table class="table_0">
             <tr>
               <td class="td_right_top"><label>url</label></td>
@@ -187,7 +203,7 @@
             <tr>
               <td height="20" colspan="2"></td>
               <td>
-                <input type="button" class="button green small" value="Save" onclick="edit_video(\''.$id.'\')">
+                <input type="button" class="button green small" value="Save" onclick="edit_video(\'f_ip_'.$id.'\',\''.$id.'\')">
                 <input type="button" class="button red small" value="Cancel" onclick="$(\'#f_ip_'.$id.'\').remove()">
               </td>
             </tr>
@@ -223,7 +239,7 @@
     $msg = "$num=$group"; 
     `echo "$msg" >> $group_thread_conf`;
     `echo "$text" > $thread_path/thread$num.conf`;
-    echo gen_video($num,$group,$type,$d_ip,(isset($_POST['alert'])? 'checked' : ''),$user,$pass);
+    echo gen_video($num,$group,$type,$d_ip,(isset($_POST['alert'])? 'checked' : ''));
   }
 
   function del_video(){
@@ -239,21 +255,36 @@
        echo 'deleted';
      }
   }
-/*
-  function edit_group(){
-    global $group_conf;
-    $g_n = $_POST['group_name'];
-    $g_n_o = $_POST['group_name_old'];
-    $id = time(); 
-    if ((`cat $group_conf | grep "^$g_n_o$"` == '') || (`cat $group_conf | grep "^$g_n$"` != '')){
-      exit();
-    }
-    set_config($g_n_o,$g_n);
-    if (`cat $group_conf | grep "^$g_n$"` != ''){
+
+  function edit_video(){
+    global $group_thread_conf;
+    global $thread_path;
+    $id    = trim($_POST['id']);
+    $type  = trim($_POST['type']);
+    $d_ip  = trim($_POST['dev_ip']);
+    $name  = trim($_POST['name']);
+    $alert = trim($_POST['alert']);
+    $port  = trim($_POST['port']);
+    $user  = trim($_POST['user']);
+    $pass  = trim($_POST['password']);
+    $group = trim($_POST['group']); 
+    $g_old = trim($_POST['g_old']); 
+
+    $user_pass = ($user == '' && $pass == '' ? "#netcam_userpass :" : "netcam_userpass $user:$pass");
+    $text  = ($type == "dev" ? 'videodevice '.$d_ip."\n" : 'netcam_url '.$d_ip."\n".$user_pass."\n");
+    $text .= 'text_left '.$name."\n";
+    $text .= 'webcam_port '.$port."\n";
+    $text .= ($alert <> '' ? 'on_movie_start /usr/local/bin/motion-web-alert-plugin/alert.sh %f'
+           : '#on_movie_start /usr/local/bin/motion-web-alert-plugin/alert.sh %f');
+
+    `echo "$text" > $thread_path/thread$id.conf`;
+    set_config($id,$g_old,$group);
+    $msg = "$id=$group";
+    if (`cat $group_thread_conf | grep "^$msg$"` != ''){
       echo 'edited';
     }
   } 
-*/
+
   switch ($_POST['action'])
   {
     case 'get_num'  : number_video();  break;
