@@ -21,7 +21,7 @@ session_start();
       <li><a href="#" onclick="loadXMLDoc('view/setting_video_video.php') ; return false">Add / Edit Video</a></li>
     </ul>
   </li>	
-    <li<? echo $layout_current; ?>><a href="#" onclick="loadXMLDoc('index.html') ; return false">Layout</a></li>
+    <li<? echo $layout_current; ?>><a href="#" onclick="loadXMLDoc('view/setting_layout.php') ; return false">Layout</a></li>
     <li<? echo $api_current; ?>><a href="#" onclick="loadXMLDoc('view/setting_api.php') ; return false">API Add-on</a></li>
     <li<? echo $sms_current; ?>><a href="#" onclick="loadXMLDoc('view/setting_sms.php') ; return false">SMS-Gateway</a></li>
 </ul>

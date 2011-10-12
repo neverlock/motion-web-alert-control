@@ -27,3 +27,4 @@
 <script type="text/javascript" src="javascript/main.js"></script>
 <script type="text/javascript" src="javascript/setting.js"></script>
 <script type="text/javascript" src="javascript/alert.js"></script>
+<script type="text/javascript" src="javascript/h5utils.js"></script>

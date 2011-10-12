@@ -73,7 +73,7 @@ function cf_add_video(){
   $('#dev_id').prop('disabled', true);
   $('#ip_id').prop('disabled', true);
   $('#b_av').hide();
-  $('#dt_'+id).show();
+  $('#dt_'+id).hide().fadeIn();
 }
 
 function cancel_add_video(id){
@@ -81,7 +81,7 @@ function cancel_add_video(id){
   $('#ip_id').prop('disabled', false);
   $('#b_av').show();
   $('#f_'+id)[0].reset();
-  $('#dt_'+id).hide();
+  $('#dt_'+id).hide(50).fadeOut();
 }
 
 function add_video(id){

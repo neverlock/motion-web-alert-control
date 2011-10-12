@@ -1,3 +1,67 @@
+ul.camera_list {
+  margin-left: 10px;
+  margin-top: 10px;
+  font: 80% "Trebuchet MS", sans-serif;
+  list-style-type: inherit
+  list-style-image: inherit;
+  list-style-position: inside;
+}
+ul.camera_list_in {
+  list-style-type: square;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+table.layout {
+  float:left;
+  border-width: 1px;
+  border-spacing: 0px;
+  border-style: dashed;
+  border-color: #aaaaaa;
+  border-collapse: collapse;
+}
+table.layout td {
+  border-width: 1px;
+  padding: 0px;
+  border-style: dashed;
+  border-color: #aaaaaa;
+}
+table.layout_list {
+  float:left;
+  width:34 ;height:34px;
+  margin: 5px 0px 0px 8px;
+  border-width: 1px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #aaaaaa;
+  border-collapse: collapse;
+}
+table.layout_list td {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #aaaaaa;
+}
+
+table.normal {
+  float:left;
+  width:90% ;height:87%;
+  margin: 20px 0px 0px 20px;
+  border-width: 1px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #aaaaaa;
+  border-collapse: collapse;
+}
+table.normal td {
+  overflow:hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #aaaaaa;
+}
+.layout img {
+width:100%;
+height:100%;
+}
 .no_show{
   margin-top:5px;
   height:1px;

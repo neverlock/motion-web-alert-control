@@ -3,7 +3,7 @@
         <ul>
             <li id="tray-active"><a href="./">:: MAIN :: </a></li> <!-- Active page -->
 	    <li><a href="#" onclick="loadXMLDoc('view/monitor.php') ; return false">Realtime Monitor</a></li>
-            <li><a href="#" onclick="loadXMLDoc('view/recorded.php') ; return false">View Recorded</a></li>
+            <li><a href="#" onclick="loadXMLDoc('view/h.php') ; return false">View Recorded</a></li>
             <li><a href="#" onclick="loadXMLDoc('view/setting_alert.php') ; return false">Setting</a></li>
             <li><a href="#">Download</a></li>
             <li><a href="#">Purchase</a></li>
