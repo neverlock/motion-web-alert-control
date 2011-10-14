@@ -164,12 +164,12 @@ function file_tree(){
          apprise('<img width="250" height="auto" src="'+file+'">', 
          {'verify':true, 'textYes':'View full size', 'textNo':'Exit!'},function(r) {
            if(r){
-             myWindow=window.open(file,'','width=auto,height=auto');
+             myWindow=window.open(file,'','width=640,height=480');
              myWindow.focus();
            }
         });
       }else{
-             myWindow=window.open(file,'','width=auto,height=auto');
+             myWindow=window.open(file,'','width=640,height=480');
              myWindow.focus();
       }
     });

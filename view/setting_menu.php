@@ -9,7 +9,8 @@ session_start();
   <li class="current" ><a> :: Setting :: </a></li>
   <li<? echo $alert_current; ?>><a href="#" onclick="return false">Alert</a>
     <ul>
-      <li><a href="#" onclick="loadXMLDoc('view/setting_alert.php') ; return false">Date Of Alert - On/Off</a></li>
+      <li><a href="#" onclick="loadXMLDoc('view/setting_alert.php') ; return false">On/Off</a></li>
+      <li><a href="#" onclick="loadXMLDoc('view/setting_alert_day.php') ; return false">Date Of Alert</a></li>
       <li><a href="#" onclick="loadXMLDoc('view/setting_alert_intrude.php') ; return false">Intrude</a></li>
       <li><a href="#" onclick="loadXMLDoc('view/setting_alert_powerdown.php') ; return false">PowerDown</a></li>
     </ul>

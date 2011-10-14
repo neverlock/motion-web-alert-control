@@ -27,7 +27,7 @@ include('setting_function.php');
     $list .= '</ul>';
   }
 ?>
-<div class="setting_div" >
+<div class="setting_div">
 <fieldset class="fieldset_setting">
 <legend class="legend_setting">Layout Setting</legend>
 <table width="400" height="350" class="layout">

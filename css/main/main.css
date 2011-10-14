@@ -138,7 +138,7 @@ table.normal td {
 
 .fieldset_setting
 {
-  width:90%;
+  width:600px;
   border:1px solid #aaaaaa;
   padding-left:30px;
   padding-top: 10px;
@@ -162,12 +162,17 @@ table.normal td {
   .cal_m { vertical-align: top; height:190px;}
   .w_detail { width:15px; }
   .no { margin-top:5px;margin-bottom:0px;padding:0px 0px 0px 25px;}
-  .cg { height:20px; width:30px; background-color:#007a28; }
-  .cy { height:20px; width:30px; background-color:#ffa600; }
-  .cb { height:20px; width:30px; background-color:#0000b1; }
-  .cr { height:20px; width:30px; background-color:#e40000; }
-  .cs { height:20px; width:30px; background-color:#fc00ff; }
-  .ct { height:20px; width:30px; background-color:#aaaaaa; }
+  .cg { height:20px; width:30px; background:  url(../calendar/images/d_g.png) 90% 80% repeat-x; }
+  .cy { height:20px; width:30px; background:  url(../calendar/images/d_y.png) 90% 80% repeat-x; }
+  .cb { height:20px; width:30px; background:  url(../calendar/images/d_b.png) 90% 80% repeat-x; }
+  .cr { height:20px; width:30px; background:  url(../calendar/images/d_r.png) 90% 80% repeat-x; }
+  .cs { height:20px; width:30px; background:  url(../calendar/images/ui-bg_flat_55_fbec88_40x100.png) 90% 80% repeat-x; }
+  .ct { height:20px; width:30px; background:  url(../calendar/images/d_t.png) 90% 80% repeat-x; }
+  .foot_div { 
+    -moz-box-shadow: 0 0 5px 5px #888;
+    -webkit-box-shadow: 0 0 5px 5px#888;
+    box-shadow: 0 0 5px 5px #888;
+   }
 /* ----------------------------------------------------------------------------------------------------------
 1) HTML tags
 ---------------------------------------------------------------------------------------------------------- */

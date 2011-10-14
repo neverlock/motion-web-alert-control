@@ -9,7 +9,7 @@
   $path_save = "../view/layout.php";
 
  $st = 
-  '<style> #ch_0 img { width:100%; height:auto; } </style>';
+  '<style> #ch_0 {border-width:0px; border-spacing:5px; border-collapse: separate; empty-cells:hide;} #ch_0 td {border-width:1px; padding:0px; border-style:dotted; border-color:#aaaaaa;} #ch_0 img { width:100%; height:auto; } </style>';
 
   function save_layout(){
     global $path_save; 
