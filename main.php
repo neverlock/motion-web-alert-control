@@ -24,7 +24,7 @@ include('control/check_login.php');
 			</td>
 			<td class="v_top">
 			    <div id="page" class="col1" >
-		                <?php include('view/page.php');?>
+		                <?php include('view/layout.php');?>
               		    </div>
 			</td>
 		</tr></table>

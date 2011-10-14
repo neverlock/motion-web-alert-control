@@ -1,6 +1,3 @@
-// For discussion and comments, see: http://remysharp.com/2009/01/07/html5-enabling-script/
-/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/
-
 function cancel(e) {
   if (e.preventDefault) {
     e.preventDefault();
@@ -71,24 +68,63 @@ addEvent(window, 'click', function (event) {
   
 })();
 
-function init_1ch(){
-  var c1 = document.querySelector('#c1');
-  addEvent(c1, 'dragover', cancel); 
-  addEvent(c1, 'dragenter', cancel);
-  addEvent(c1, 'drop', function (e) {
+function init_drag(el){
+  var el = document.querySelector(el);
+  addEvent(el, 'dragover', cancel); 
+  addEvent(el, 'dragenter', cancel);
+  addEvent(el, 'drop', function (e) {
     if (e.preventDefault) e.preventDefault(); var str = e.dataTransfer.getData('URL');
-    if(str.substring(0,7) == "camera:"){ this.innerHTML = '<img src="' + str.substring(7) + '">'; }
+    if(str.substring(0,7) == "camera:"){ this.innerHTML = 
+      '<img width="'+$(this).width()+'" height="'+$(this).height()+'" src="' + str.substring(7) + '">'; }
     return false;
   });
 }
 
+function init_1ch(){
+  new init_drag('#c1-1');
+}
+
 function init_3ch(){
-  var c1 = document.querySelector('#c1');
-  addEvent(c1, 'dragover', cancel); 
-  addEvent(c1, 'dragenter', cancel);
-  addEvent(c1, 'drop', function (e) {
-    if (e.preventDefault) e.preventDefault(); var str = e.dataTransfer.getData('URL');
-    if(str.substring(0,7) == "camera:"){ this.innerHTML = '<img src="' + str.substring(7) + '">'; }
-    return false;
-  });
+  new init_drag('#c3-1'); new init_drag('#c3-2');
+  new init_drag('#c3-3');
+}
+
+function init_4ch(){
+  new init_drag('#c4-1'); new init_drag('#c4-2');
+  new init_drag('#c4-3'); new init_drag('#c4-4');
+}
+
+function init_6ch(){
+  new init_drag('#c6-1'); new init_drag('#c6-2');
+  new init_drag('#c6-3'); new init_drag('#c6-4');
+  new init_drag('#c6-5'); new init_drag('#c6-6');
+}
+
+function init_9ch(){
+  new init_drag('#c9-1'); new init_drag('#c9-2'); new init_drag('#c9-3');
+  new init_drag('#c9-4'); new init_drag('#c9-5'); new init_drag('#c9-6');
+  new init_drag('#c9-7'); new init_drag('#c9-8'); new init_drag('#c9-9');
+}
+
+function init_16ch(){
+  new init_drag('#c16-1'); new init_drag('#c16-2'); new init_drag('#c16-3'); new init_drag('#c16-4');
+  new init_drag('#c16-5'); new init_drag('#c16-6'); new init_drag('#c16-7'); new init_drag('#c16-8');
+  new init_drag('#c16-9'); new init_drag('#c16-10'); new init_drag('#c16-11'); new init_drag('#c16-12');
+  new init_drag('#c16-13'); new init_drag('#c16-14'); new init_drag('#c16-15'); new init_drag('#c16-16');
+}
+
+function init_10ch(){
+  new init_drag('#c10-1'); new init_drag('#c10-2');
+  new init_drag('#c10-3'); new init_drag('#c10-4');
+  new init_drag('#c10-5'); new init_drag('#c10-6');
+  new init_drag('#c10-7'); new init_drag('#c10-8');
+  new init_drag('#c10-9'); new init_drag('#c10-10');
+}
+
+function init_25ch(){
+  new init_drag('#c25-1'); new init_drag('#c25-2'); new init_drag('#c25-3'); new init_drag('#c25-4'); new init_drag('#c25-5'); 
+  new init_drag('#c25-6'); new init_drag('#c25-7'); new init_drag('#c25-8'); new init_drag('#c25-9'); new init_drag('#c25-10'); 
+  new init_drag('#c25-11'); new init_drag('#c25-12'); new init_drag('#c25-13'); new init_drag('#c25-14'); new init_drag('#c25-15'); 
+  new init_drag('#c25-16'); new init_drag('#c25-17'); new init_drag('#c25-18'); new init_drag('#c25-19'); new init_drag('#c25-20'); 
+  new init_drag('#c25-21'); new init_drag('#c25-22'); new init_drag('#c25-23'); new init_drag('#c25-24'); new init_drag('#c25-25'); 
 }

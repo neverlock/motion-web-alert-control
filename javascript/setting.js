@@ -146,3 +146,31 @@ function edit_video (f_id,id) {
   });
 }
 
+/*layout save*/
+function save_layout(){
+ var data = $('#main_layout').html();
+ $.post('control/layout.php',{action:'save',data: data },function(result){
+    if(result == 'save'){
+      apprise(':: Save setting ::');
+    }else if(result == 'logout'){ window.location = 'index.php';
+    }else { apprise('Save failed!') ;}
+  });
+}
+
+/*file tree*/
+function file_tree(){
+    $('#filetree').fileTree({ root: '../../Surveillance/', script: 'control/jqueryFileTree.php' }, function(file) { 
+      if(file.substring(file.length - 3) == 'jpg'){
+         apprise('<img width="250" height="auto" src="'+file+'">', 
+         {'verify':true, 'textYes':'View full size', 'textNo':'Exit!'},function(r) {
+           if(r){
+             myWindow=window.open(file,'','width=auto,height=auto');
+             myWindow.focus();
+           }
+        });
+      }else{
+             myWindow=window.open(file,'','width=auto,height=auto');
+             myWindow.focus();
+      }
+    });
+}

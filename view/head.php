@@ -18,6 +18,7 @@
 <link href="css/setting_menu/setting_menu_style.css" rel="stylesheet" type="text/css">
 <link type="text/css" href="css/calendar/jquery-ui-1.8.16.chagridsada_boonthus_hack.css" rel="stylesheet" />
 <link type="text/css" href="css/button.css" rel="stylesheet" />
+<link href="css/file_tree/jqueryFileTree.css" rel="stylesheet" type="text/css" media="screen">
 <!--javascript--!>
 <script type="text/javascript" src="javascript/apprise-1.5.min.js"></script>
 <script type="text/javascript" src="javascript/jquery/jquery-1.6.2.min.js"></script>
@@ -28,3 +29,4 @@
 <script type="text/javascript" src="javascript/setting.js"></script>
 <script type="text/javascript" src="javascript/alert.js"></script>
 <script type="text/javascript" src="javascript/h5utils.js"></script>
+<script type="text/javascript" src="javascript/jqueryFileTree.js"></script>
