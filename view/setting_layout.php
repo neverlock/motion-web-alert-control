@@ -34,11 +34,12 @@ include('setting_function.php');
   <tr>
     <td id="main_layout" height="300">
       <table id="ch_0" class="normal">
+        <tr><td><ul class="camera_list"><ul><b>Setting --> layout</b></ul><li>Select Layout</li><li>Drag Camera to Layout !</li></ul> </td></tr>
       </table>
     </td>
   </tr>
   <tr>
-     <td>
+     <td style="padding:5px">
          <a href="" onclick="$('#ch_0').html($('#1ch').html());init_1ch();return false">
            <table id="1ch" class="layout_list">
              <tr><td id="c1-1"></td></tr>
@@ -52,7 +53,7 @@ include('setting_function.php');
          </a>
          <a href="" onclick="$('#ch_0').html($('#4ch').html());init_4ch();return false">
            <table id="4ch" class="layout_list">
-             <tr><td id="c4-1" width="50%" height="50%"></td><td id="c4-2"></td></tr>
+             <tr width="50%" height="50%"><td id="c4-1"></td><td id="c4-2"></td></tr>
              <tr><td id="c4-3"></td><td id="c4-4"></td></tr>
            </table>
          </a>
@@ -98,7 +99,7 @@ include('setting_function.php');
      </td>
   </tr>
 </table>
-<table width="180" height="350" class="layout">
+<table width="180" class="layout" style="margin-left:5px">
   <tr><td>
     <ul class="camera_list">
      <? echo $list; ?>

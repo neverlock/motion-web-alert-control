@@ -1,5 +1,5 @@
 <?php
-$path_conf='/etc/motion-web-alert-plugin/_motion-web-alert-plugin.conf';
+$path_conf='/etc/motion-web-alert-plugin/motion-web-alert-plugin.conf';
 
 function url_rep($str){
   $tmp = '';

@@ -1,47 +1,44 @@
-$(function(){
-    // Datepicker
-    $('#datepicker').datepicker({
-      inline: true
-    });
-  });
-
 $(function() {
-	function hide_menu() {
-		if ( document.getElementById('btn_menu').value  == "Hide-Menu" ){
-			$( "#menu" ).removeAttr( "style" ).show().fadeOut();
-			document.getElementById('btn_menu').value = "Show-Menu";
-		}else{
-			$( "#menu" ).removeAttr( "style" ).hide().fadeIn();
-			document.getElementById('btn_menu').value  = "Hide-Menu"	
-		}
-	};
+  /*Clock*/ 
+  $('.jclock').jclock();
+  /*Hide Menu*/
+  function hide_menu() {
+    if ($('#btn_menu').val() == "Hide-Menu" ){
+      $('#menu').removeAttr("style").show().fadeOut();
+      $('#btn_menu').val('Show-Menu');
+    }else{
+      $('#menu').removeAttr("style").hide().fadeIn();
+      $('#btn_menu').val('Hide-Menu');
+    }
+  };
 
-	$( "#btn_menu" ).click(function() {
-		hide_menu();
-		return false;
-	});
+  $('#btn_menu').click(function() { hide_menu(); return false; });
 
-	$('#datepicker').datepicker({
-		inline: true
-	});
-
-	$( "#btn_logout" ).click(function() {
-        	$.post("control/logout.php");
-		window.location = './'       
-	});
-
+  /*Data Picker*/
+  $('#datepicker').datepicker({ inline: true });
+ 
+  /*Logout*/
+  $('#btn_logout').click(function() { 
+    $.post('control/logout.php',function(result) {logout(result);});
+    return false;
+  });
 });
+
+/*Loading Status*/
+function loading(bool){
+  if(bool){ $('#loading').show(); }else{ $('#loading').delay(500).fadeOut(200).hide(0); }
+}
 
 function loadXMLDoc(url)
 {
-document.getElementById("page").innerHTML='<h2><font color=red>&nbsp;&nbsp;<img src="images/loader.gif">&nbsp;&nbsp;Loading....</font></h2>';
+  loading(true);
 var xmlhttp;
 if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  {
   xmlhttp=new XMLHttpRequest();
   }
 else
-  {// code for IE6, IE5
+  {
   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
 xmlhttp.onreadystatechange=function()
@@ -54,10 +51,59 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("GET",url,true);
 xmlhttp.send();
+loading(false);
 }
 
-function load_page(year,month,day) {
-	var str_url = 'view/even.php?y='+year+'&m='+((month+1)<10?"0"+(month+1):(month+1))+'&d='+(day<10?"0"+day:day);
-	loadXMLDoc(str_url);
-	return false;
-};
+/*Check Logout*/
+function logout(result){
+  if(result == 'logout'){ window.location = 'index.php'; }
+}
+/*Set Page*/
+function set_page(result){
+  $('#page').fadeOut(0).delay(100).html(result).fadeIn(300); 
+}
+
+/*Load Page*/
+function load_page(url){
+  loading(true);
+  $.post(url, function(result){ logout(result);
+      if(result != ''){ set_page(result); }else { apprise('Load failed!'); }
+  checkbox_on();    
+  loading(false); });
+}
+
+/*Even calendar*/
+function even(year,month,day){
+  loading(true);
+  $.post('control/even.php',{action:'gen_group', year:year,
+    month:((month+1) < 10 ? "0"+(month+1) : (month+1)), day:(day<10?"0"+day:day)},
+    function(result){ logout(result);
+      if(result != ''){ set_page(result); }else { apprise('Load failed!'); }
+  loading(false); });
+return false;
+}
+
+function even_view(group,date){
+  loading(true);
+  $.post('control/even.php',{action:'even_view', group:group, date:date},
+    function(result){ logout(result);
+      if(result != ''){ set_page(result); }else { apprise('Load failed!'); }
+  loading(false); });
+}
+
+/*zoom in*/
+function zoom_in() {
+  var origin = $('#tb_zoom').width();
+  var size = $('#zoom').width();
+  var new_size = ((size * 100) / origin) + 10;
+  if(new_size > 100){new_size = 100;}
+  $('#zoom').width(new_size + '%');
+}
+
+/*zoom out*/
+function zoom_out() {
+  var origin = $('#tb_zoom').width();
+  var size = $('#zoom').width();
+  var new_size = ((size * 100) / origin) - 10;
+  if(new_size > 30){ $('#zoom').width(new_size + '%'); } 
+}

@@ -1,15 +1,16 @@
 <?php
-session_start();
-        if ( $_SESSION['session_mwap_id'] <> session_id() ){
-                header("location:logout.html");
-        exit();
-        }
+  /*Check login!*/
+  session_start();
+  if ( $_SESSION['session_mwap_id'] <> session_id() ){
+    echo 'logout';
+    exit();
+  }
 ?>
-<h2>File Recorded</h2>
+<h2 style="margin-left:20px">View File Recorded</h2>
 <div id="filetree" class="file_tree">
   <ul class="jqueryFileTree" style="">
    <li class="directory collapsed">
-      <a href="" onclick="file_tree() ; return false">File Recorded.</a>
+      <a href="File Recorded" onclick="file_tree() ; return false">File Recorded.</a>
    </li>
   </ul>
 </div>

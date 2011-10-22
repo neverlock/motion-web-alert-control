@@ -30,3 +30,4 @@
 <script type="text/javascript" src="javascript/alert.js"></script>
 <script type="text/javascript" src="javascript/h5utils.js"></script>
 <script type="text/javascript" src="javascript/jqueryFileTree.js"></script>
+<script type="text/javascript" src="javascript/jquery.jclock-1.2.0.js"></script>

@@ -1,14 +1,11 @@
 <?php
+include('config.php');
   /*Check login!*/
   session_start();
   if ( $_SESSION['session_mwap_id'] <> session_id() ){
     echo 'logout';
     exit();
   }
-  /*global*/
-  $group_thread_conf = "/etc/motion-web-alert-plugin/group/group-thread.conf ";
-  $thread_path = "/etc/motion-web-alert-plugin/thread";
-  $group_conf = "/etc/motion-web-alert-plugin/group/group.conf";
 
   function rep_spc($str){
     $tmp = '';
@@ -33,15 +30,15 @@
   }
 
   function number_video(){
-    global $group_thread_conf;
-    $read = `cat $group_thread_conf | awk -F'=' '{print $1}' | sort | tail -1`;
+    global $FILE_GROUP_THREAD;
+    $read = `cat $FILE_GROUP_THREAD | awk -F'=' '{print $1}' | sort | tail -1`;
     $num = intval($read) + 1;
     $num = ($num < 10 ? "0$num" : "$num");
     echo trim($num);
   }
 
   function set_config($id,$old,$new){
-    global $group_thread_conf;
+    global $FILE_GROUP_THREAD;
     $new = trim($new);
     $old = trim($old);
     if( $new <> $old ) {
@@ -49,7 +46,7 @@
       $msg = "$id=$new"; 
       $old = rep_spc($old);
       $new = rep_spc($new);
-      `sed -i "s/^$msg_o$/$msg/g" $group_thread_conf`;
+      `sed -i "s/^$msg_o$/$msg/g" $FILE_GROUP_THREAD`;
     }
   }
 
@@ -71,10 +68,10 @@
   }
 
   function sg($name,$select){
-    global $group_conf;
+    global $FILE_GROUP;
     $sg_val = "<select name=\"$name\">";
     $sg_val .= "\n<option value='Undefined Group'>Undefined Group</option>";
-    $file =  `cat $group_conf`;
+    $file =  `cat $FILE_GROUP`;
     foreach (split("\n",$file) as $val){
       $val = trim($val);
       if ($val != ""){
@@ -90,21 +87,21 @@
   }
 
   function cf_edit_video(){
-    global $thread_path;
+    global $PATH_THREAD;
     $id  = $_POST['id'];
     $type  = $_POST['t'];
     $group  = $_POST['g'];
 
-    $user_pass = `cat $thread_path/thread$id.conf | grep netcam_userpass | awk -F' ' '{print $2}'`;
+    $user_pass = `cat $PATH_THREAD/thread$id.conf | grep netcam_userpass | awk -F' ' '{print $2}'`;
     $u_p = split(':',$user_pass);
     $u  = $u_p[0];
     $p  = $u_p[1];
 
-    $read_dt = `cat $thread_path/thread$id.conf | head -1`;
+    $read_dt = `cat $PATH_THREAD/thread$id.conf | head -1`;
     $dt_val = split(' ',$read_dt);
     $dt = $dt_val[1];
 
-    $on = `cat $thread_path/thread$id.conf | grep "#on_movie_start"`;
+    $on = `cat $PATH_THREAD/thread$id.conf | grep "#on_movie_start"`;
     $on = ($on == '' ? 'checked' : '');
 
     if($type == "dev"){
@@ -214,8 +211,8 @@
   }
 
   function add_video(){
-    global $group_thread_conf;
-    global $thread_path;
+    global $FILE_GROUP_THREAD;
+    global $PATH_THREAD;
     $type  = trim($_POST['type']);
     $d_ip  = trim($_POST['dev_ip']);
     $name  = trim($_POST['name']);
@@ -233,32 +230,32 @@
 
     $num = split(' ',$name);
     $num = $num[1];
-    if (`cat $group_thread_conf | cut -b1-2 | grep "^$num$"` != ''){
+    if (`cat $FILE_GROUP_THREAD | cut -b1-2 | grep "^$num$"` != ''){
       exit();
     }
     $msg = "$num=$group"; 
-    `echo "$msg" >> $group_thread_conf`;
-    `echo "$text" > $thread_path/thread$num.conf`;
+    `echo "$msg" >> $FILE_GROUP_THREAD`;
+    `echo "$text" > $PATH_THREAD/thread$num.conf`;
     echo gen_video($num,$group,$type,$d_ip,(isset($_POST['alert'])? 'checked' : ''));
   }
 
   function del_video(){
-    global $group_thread_conf;
-    global $thread_path; 
+    global $FILE_GROUP_THREAD;
+    global $PATH_THREAD; 
     $id = $_POST['video_id'];
     $time = time(); 
-    `cat $group_thread_conf | grep -v "^$id=" > /tmp/$time`;
-    `cat /tmp/$time > $group_thread_conf`;
+    `cat $FILE_GROUP_THREAD | grep -v "^$id=" > /tmp/$time`;
+    `cat /tmp/$time > $FILE_GROUP_THREAD`;
     `rm /tmp/$time`;
-    `rm $thread_path/thread$id.conf`; 
-     if (`cat $group_thread_conf | grep "^$id="` == ''){
+    `rm $PATH_THREAD/thread$id.conf`; 
+     if (`cat $FILE_GROUP_THREAD | grep "^$id="` == ''){
        echo 'deleted';
      }
   }
 
   function edit_video(){
-    global $group_thread_conf;
-    global $thread_path;
+    global $FILE_GROUP_THREAD;
+    global $PATH_THREAD;
     $id    = trim($_POST['id']);
     $type  = trim($_POST['type']);
     $d_ip  = trim($_POST['dev_ip']);
@@ -277,10 +274,10 @@
     $text .= ($alert <> '' ? 'on_movie_start /usr/local/bin/motion-web-alert-plugin/alert.sh %f'
            : '#on_movie_start /usr/local/bin/motion-web-alert-plugin/alert.sh %f');
 
-    `echo "$text" > $thread_path/thread$id.conf`;
+    `echo "$text" > $PATH_THREAD/thread$id.conf`;
     set_config($id,$g_old,$group);
     $msg = "$id=$group";
-    if (`cat $group_thread_conf | grep "^$msg$"` != ''){
+    if (`cat $FILE_GROUP_THREAD | grep "^$msg$"` != ''){
       echo 'edited';
     }
   } 

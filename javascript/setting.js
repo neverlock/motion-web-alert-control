@@ -157,20 +157,25 @@ function save_layout(){
   });
 }
 
+/*view file*/
+function view_file(file){
+  if(file.substring(file.length - 3) == 'jpg'){
+     apprise('<img width="250" height="auto" src="'+file+'">', 
+     {'verify':true, 'textYes':'View full size', 'textNo':'Exit!'},function(r) {
+       if(r){
+         myWindow=window.open(file,'','width=640,height=480');
+         myWindow.focus();
+   }
+    });
+  }else{
+         myWindow=window.open(file,'','width=640,height=480');
+         myWindow.focus();
+  }
+}
+
 /*file tree*/
 function file_tree(){
     $('#filetree').fileTree({ root: '../../Surveillance/', script: 'control/jqueryFileTree.php' }, function(file) { 
-      if(file.substring(file.length - 3) == 'jpg'){
-         apprise('<img width="250" height="auto" src="'+file+'">', 
-         {'verify':true, 'textYes':'View full size', 'textNo':'Exit!'},function(r) {
-           if(r){
-             myWindow=window.open(file,'','width=640,height=480');
-             myWindow.focus();
-           }
-        });
-      }else{
-             myWindow=window.open(file,'','width=640,height=480');
-             myWindow.focus();
-      }
+      view_file(file);
     });
 }

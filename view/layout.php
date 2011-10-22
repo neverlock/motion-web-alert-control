@@ -1,6 +1,3 @@
-<style> #ch_0 {border-width:0px; border-spacing:5px; border-collapse: separate; empty-cells:hide;} #ch_0 td {border-width:1px; padding:0px; border-style:dotted; border-color:#aaaaaa;} #ch_0 img { width:100%; height:auto; } </style><table id=ch_0 class=normal>
-             <tbody><tr height=25%><td id=c16-1 width=25%><img src=http://localhost:10001/ height=64 width=88></td><td id=c16-2 width=25%><img src=http://localhost:10001/ height=64 width=88></td><td id=c16-3 width=25%><img src=http://localhost:10001/ height=64 width=88></td><td id=c16-4 width=25%></td></tr>
-             <tr height=25%><td id=c16-5></td><td id=c16-6></td><td id=c16-7></td><td id=c16-8></td></tr>
-             <tr height=25%><td id=c16-9></td><td id=c16-10></td><td id=c16-11></td><td id=c16-12></td></tr>
-             <tr height=25%><td id=c16-13></td><td id=c16-14></td><td id=c16-15></td><td id=c16-16></td></tr>
-           </tbody></table>
+<style> #ch_0 { margin:0px; padding:0px; border-width:0px; border-spacing:5px; border-collapse: separate; empty-cells:hide;} #ch_0 td {border-width:1px; margin:0px; padding:0px; border-style:dotted; border-color:#aaaaaa;} #ch_0 img { width:100%; height:auto; } </style><table id=tb_zoom class=button_zoom><tr><td><b>ZOOM : </b><a class='button orange small' onclick='zoom_out()'>-</a><a class='button orange medium' onclick='zoom_in()'>+</a></td></tr></table><table id=zoom class=table_zoom><tr><td><table id=ch_0 class=normal>
+             <tbody><tr><td id=c1-1><img src=http://localhost:10001/ height=298 width=376></td></tr>
+           </tbody></table></td></tr></table>

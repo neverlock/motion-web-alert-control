@@ -1,13 +1,11 @@
 <?php
+include('config.php');
   /*Check login!*/
   session_start();
   if ( $_SESSION['session_mwap_id'] <> session_id() ){
     echo 'logout';
     exit();
   }
-  /*global*/
-  $group_conf = "/etc/motion-web-alert-plugin/group/group.conf";
-  $group_thread_conf = "/etc/motion-web-alert-plugin/group/group-thread.conf ";
 
   function rep_spc($str){
     $tmp = '';
@@ -32,13 +30,13 @@
   }
 
   function set_config($old,$new){
-    global $group_conf;
+    global $FILE_GROUP;
     $new = trim($new);
     $old = trim($old);
     if( $new <> $old ) {
       $old = rep_spc($old);
       $new = rep_spc($new);
-      `sed -i "s/^$old$/$new/g" $group_conf`;
+      `sed -i "s/^$old$/$new/g" $FILE_GROUP`;
     }
   }
 
@@ -58,13 +56,13 @@
   }
 
   function add_group(){
-    global $group_conf;
+    global $FILE_GROUP;
     $g_n = $_POST['group_name'];
-    if (`cat $group_conf | grep "^$g_n$"` != ''){
+    if (`cat $FILE_GROUP | grep "^$g_n$"` != ''){
       exit();
     }
-    `echo $g_n >> $group_conf`;
-    if (`cat $group_conf | grep "^$g_n$"` == ''){
+    `echo $g_n >> $FILE_GROUP`;
+    if (`cat $FILE_GROUP | grep "^$g_n$"` == ''){
       exit();
     } 
     $id = time(); 
@@ -73,34 +71,34 @@
   }
 
   function del_group(){
-    global $group_conf;
-    global $group_thread_conf;
+    global $FILE_GROUP;
+    global $FILE_GROUP_THREAD;
     $g_n = trim($_POST['group_name']);
     $id = time(); 
-    if (`cat $group_conf | grep "^$g_n$"` == ''){
+    if (`cat $FILE_GROUP | grep "^$g_n$"` == ''){
       exit();
     }
-    `cat $group_conf | grep -v "^$g_n$" > /tmp/$id`;
-    `cat /tmp/$id > $group_conf`;
+    `cat $FILE_GROUP | grep -v "^$g_n$" > /tmp/$id`;
+    `cat /tmp/$id > $FILE_GROUP`;
     `rm /tmp/$id`;
      $old = rep_spc($g_n);
      $new = "Undefined Group";  
-    `sed -i "s/$old$/$new/g" $group_thread_conf`;
-    if (`cat $group_conf | grep "^$g_n$"` == ''){
+    `sed -i "s/$old$/$new/g" $FILE_GROUP_THREAD`;
+    if (`cat $FILE_GROUP | grep "^$g_n$"` == ''){
       echo 'deleted';
     }
   }
 
   function edit_group(){
-    global $group_conf;
+    global $FILE_GROUP;
     $g_n = $_POST['group_name'];
     $g_n_o = $_POST['group_name_old'];
     $id = time(); 
-    if ((`cat $group_conf | grep "^$g_n_o$"` == '') || (`cat $group_conf | grep "^$g_n$"` != '')){
+    if ((`cat $FILE_GROUP | grep "^$g_n_o$"` == '') || (`cat $FILE_GROUP | grep "^$g_n$"` != '')){
       exit();
     }
     set_config($g_n_o,$g_n);
-    if (`cat $group_conf | grep "^$g_n$"` != ''){
+    if (`cat $FILE_GROUP | grep "^$g_n$"` != ''){
       echo 'edited';
     }
   } 

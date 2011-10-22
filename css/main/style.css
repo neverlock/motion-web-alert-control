@@ -2,11 +2,6 @@ body {background-color:#fff; color:#404040}
 
 a {color:#404040;}
 a:hover {color:#000;}
-/*.layout_in img{
-  width:100%;
-  height:auto;
-}
-*/
     #nav span {color:#DDD;}
     #nav #nav-active {color:#DD1600;}
 

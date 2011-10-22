@@ -1,4 +1,10 @@
 <?php
+  /*Check login!*/
+  session_start();
+  if ( $_SESSION['session_mwap_id'] <> session_id() ){
+    echo 'logout';
+    exit();
+  }
 $alert_current = ' class="current" ';
 include('setting_menu.php');
 include('setting_function.php');
