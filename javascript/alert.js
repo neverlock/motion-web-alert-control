@@ -1,18 +1,3 @@
-function load_alert(){
-var js = 
-'?alert_on=' + encodeURIComponent(document.getElementById('alert_on').checked) +
-'&intrude_on=' + encodeURIComponent(document.getElementById('intrude_on').checked) +
-'&powerdown_on=' + encodeURIComponent(document.getElementById('powerdown_on').checked) +
-'&sms_on=' + encodeURIComponent(document.getElementById('sms_on').checked) +
-'&twitter_on=' + encodeURIComponent(document.getElementById('twitter_on').checked) +
-'&alert_on_old=' + encodeURIComponent(document.getElementById('alert_on_old').value) +
-'&intrude_on_old=' + encodeURIComponent(document.getElementById('intrude_on_old').value) +
-'&powerdown_on_old=' + encodeURIComponent(document.getElementById('powerdown_on_old').value) +
-'&sms_on_old=' + encodeURIComponent(document.getElementById('sms_on_old').value) +
-'&twitter_on_old=' + encodeURIComponent(document.getElementById('twitter_on_old').value);
-return js;
-}
-
 function load_alert1(){
 var js = 
 '?mo=' + encodeURIComponent(document.getElementById('mo').checked) +

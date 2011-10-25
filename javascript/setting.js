@@ -175,7 +175,18 @@ function view_file(file){
 
 /*file tree*/
 function file_tree(){
-    $('#filetree').fileTree({ root: '../../Surveillance/', script: 'control/jqueryFileTree.php' }, function(file) { 
+    $('#filetree').fileTree({ root: '../Surveillance/', script: 'control/jqueryFileTree.php' }, function(file) { 
       view_file(file);
     });
+}
+
+/*on off system*/
+function save_onoff() {
+  var data = $('#onoff_system').serialize();
+  $.post('control/on_off_system.php',data,function(result){
+     if(result == 'save'){
+       apprise(':: Save setting ::');
+     }else if(result == 'logout'){ window.location = 'index.php';
+     }else { apprise('Save failed!') ;}
+  });
 }

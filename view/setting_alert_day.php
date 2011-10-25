@@ -106,7 +106,7 @@ return $html;
      $th = ($_GET['th'] == "true" ? "Thu," : "");
      $fr = ($_GET['fr'] == "true" ? "Fri," : "");
      $sa = ($_GET['sa'] == "true" ? "Sat," : "");
-     $su = ($_GET['su'] == "true" ? "Sun" : "");
+     $su = ($_GET['su'] == "true" ? "Sun"  : "");
 
      $mo_time_all_old = $_GET['mo_time_all_old'];
      $tu_time_all_old = $_GET['tu_time_all_old'];
