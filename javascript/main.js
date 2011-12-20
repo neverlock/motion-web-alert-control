@@ -72,6 +72,12 @@ function load_page(url){
   loading(false); });
 }
 
+function control_motion(url){
+  loading(true);
+  $.post(url);
+  loading(false);
+}
+
 /*Even calendar*/
 function even(year,month,day){
   loading(true);
