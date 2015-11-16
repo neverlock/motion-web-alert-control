@@ -21,7 +21,7 @@ include('setting_function.php');
     foreach($sp_g as $g){
       $g_val = split('=',$g);
       if($val == $g_val[1]){
-         $list .= '<li onclick="return false"><a href="camera:http://localhost:100'.$g_val[0].'/">CAMERA '.$g_val[0].'</a></li>';  
+         $list .= '<li onclick="return false"><a href="camera:http://'.$_SERVER["HTTP_HOST"].':100'.$g_val[0].'/">CAMERA '.$g_val[0].'</a></li>';  
       } 
     }
     $list .= '</ul>';
