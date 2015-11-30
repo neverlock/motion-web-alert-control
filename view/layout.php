@@ -1,4 +1,6 @@
 <style> #ch_0 { margin:0px; padding:0px; border-width:0px; border-spacing:5px; border-collapse: separate; empty-cells:hide;} #ch_0 td {border-width:1px; margin:0px; padding:0px; border-style:dotted; border-color:#aaaaaa;} #ch_0 img { width:100%; height:auto; } </style><table id=tb_zoom class=button_zoom><tr><td><b>ZOOM : </b><a class='button orange small' onclick='zoom_out()'>-</a><a class='button orange medium' onclick='zoom_in()'>+</a></td></tr></table><table id=zoom class=table_zoom><tr><td><table id=ch_0 class=normal>
-             <tbody><tr width=50% height=50%><td id=c4-1><img src=http://localhost:10001/ height=149 width=188></td><td id=c4-2><img src=http://localhost:10002/ height=149 width=188></td></tr>
-             <tr><td id=c4-3></td><td id=c4-4></td></tr>
+             <tbody><tr><td colspan=2 rowspan=2 id=c10-1><img width=186 height=138 src=http://172.22.19.5:10001/></td><td colspan=2 rowspan=2 id=c10-2><img width=187 height=138 src=http://172.22.19.5:10004/></td></tr>
+             <tr></tr>
+             <tr height=25%><td id=c10-3 width=25%><img width=92 height=67 src=http://172.22.19.5:10002/></td><td id=c10-4 width=25%><img width=92 height=67 src=http://172.22.19.5:10003/></td><td id=c10-5 width=25%><img width=92 height=67 src=http://172.22.19.5:10005/></td><td id=c10-6><img width=93 height=67 src=http://172.22.19.5:10006/></td></tr>
+             <tr height=25%><td id=c10-7></td><td id=c10-8></td><td id=c10-9></td><td id=c10-10></td></tr>
            </tbody></table></td></tr></table>

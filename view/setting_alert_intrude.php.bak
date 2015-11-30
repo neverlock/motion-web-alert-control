@@ -12,10 +12,6 @@ include('setting_function.php');
      $twitter_msg = $_GET['tweet_msg'];
      $twitter_user = $_GET['tweet_user'];
      $twitter_pass = $_GET['tweet_pass'];
-     $pushbullet_on = $_GET['pushbullet_on'];
-     $pushbullet_msg = $_GET['pushbullet_msg'];
-     $pushbullet_token = $_GET['pushbullet_token'];
-     $pushbullet_channel = $_GET['pushbullet_channel'];
      $sms_on_old = $_GET['sms_on_old']; 
      $sms_msg_old = $_GET['sms_msg_old']; 
      $sms_phone_old = $_GET['sms_phone_old']; 
@@ -23,17 +19,11 @@ include('setting_function.php');
      $twitter_msg_old = $_GET['tweet_msg_old'];
      $twitter_user_old = $_GET['tweet_user_old'];
      $twitter_pass_old = $_GET['tweet_pass_old'];
-     $pushbullet_on_old = $_GET['pushbullet_on_old'];
-     $pushbullet_msg_old = $_GET['pushbullet_msg_old'];
-     $pushbullet_token_old = $_GET['pushbullet_token_old'];
-     $pushbullet_channel_old = $_GET['pushbullet_channel_old'];
 
      $sms_on = ("$sms_on" == "true" ? "1" : "0");
      $sms_on_old = ($sms_on_old == "checked" ? "1" : "0");
      $twitter_on = ("$twitter_on" == "true" ? "1" : "0");
      $twitter_on_old = ($twitter_on_old == "checked" ? "1" : "0");
-     $pushbullet_on = ("$pushbullet_on" == "true" ? "1" : "0");
-     $pushbullet_on_old = ($pushbullet_on_old == "checked" ? "1" : "0");
      
      set_config('INTRUDE_SMS_ON=',$sms_on,$sms_on_old);
      set_config('INTRUDE_SMS_MSG=',$sms_msg,$sms_msg_old);
@@ -42,10 +32,6 @@ include('setting_function.php');
      set_config('INTRUDE_TWITTER_MSG=',$twitter_msg,$twitter_msg_old);
      set_config('INTRUDE_TWITTER_USER=',$twitter_user,$twitter_user_old);
      set_config('INTRUDE_TWITTER_PASS=',$twitter_pass,$twitter_pass_old);
-     set_config('INTRUDE_PUSHBULLET_ON=',$pushbullet_on,$pushbullet_on_old);
-     set_config('INTRUDE_PUSHBULLET_MSG=',$pushbullet_msg,$pushbullet_msg_old);
-     set_config('INTRUDE_PUSHBULLET_TOKEN=',$pushbullet_token,$pushbullet_token_old);
-     set_config('INTRUDE_PUSHBULLET_CHANNEL=',$pushbullet_channel,$pushbullet_channel_old);
   }
   $sms_on = (load_config('INTRUDE_SMS_ON=') == 1 ? "checked":"");
   $sms_msg = load_config('INTRUDE_SMS_MSG=');
@@ -54,10 +40,6 @@ include('setting_function.php');
   $twitter_msg = load_config('INTRUDE_TWITTER_MSG=');
   $twitter_user = load_config('INTRUDE_TWITTER_USER=');
   $twitter_pass = load_config('INTRUDE_TWITTER_PASS=');
-  $pushbullet_on = (load_config('INTRUDE_PUSHBULLET_ON=') == 1 ? "checked":"");
-  $pushbullet_msg = load_config('INTRUDE_PUSHBULLET_MSG=');
-  $pushbullet_token = load_config('INTRUDE_PUSHBULLET_TOKEN=');
-  $pushbullet_channel = load_config('INTRUDE_PUSHBULLET_CHANNEL=');
 ?>
 <form autocomplete="off" onsubmit="loadXMLDoc(
 'view/setting_alert_intrude.php' +
@@ -68,21 +50,13 @@ include('setting_function.php');
 '&tweet_msg=' + encodeURIComponent(document.getElementById('tweet_msg').value) +
 '&tweet_user=' + encodeURIComponent(document.getElementById('tweet_user').value) +
 '&tweet_pass=' + encodeURIComponent(document.getElementById('tweet_pass').value) +
-'&pushbullet_on=' +  encodeURIComponent(document.getElementById('pushbullet_on').checked) +
-'&pushbullet_msg=' + encodeURIComponent(document.getElementById('pushbullet_msg').value) +
-'&pushbullet_token=' + encodeURIComponent(document.getElementById('pushbullet_token').value) +
-'&pushbullet_channel=' + encodeURIComponent(document.getElementById('pushbullet_channel').value) +
 '&sms_on_old=' + encodeURIComponent(document.getElementById('sms_on_old').value) +
 '&sms_msg_old=' + encodeURIComponent(document.getElementById('sms_msg_old').value) +
 '&sms_phone_old=' + encodeURIComponent(document.getElementById('sms_phone_old').value) +
 '&tweet_on_old=' +  encodeURIComponent(document.getElementById('tweet_on_old').value) +
 '&tweet_msg_old=' + encodeURIComponent(document.getElementById('tweet_msg_old').value) +
 '&tweet_user_old=' + encodeURIComponent(document.getElementById('tweet_user_old').value) +
-'&tweet_pass_old=' + encodeURIComponent(document.getElementById('tweet_pass_old').value) +
-'&pushbullet_on_old=' +  encodeURIComponent(document.getElementById('pushbullet_on_old').value) +
-'&pushbullet_msg_old=' + encodeURIComponent(document.getElementById('pushbullet_msg_old').value) +
-'&pushbullet_token_old=' + encodeURIComponent(document.getElementById('pushbullet_token_old').value) +
-'&pushbullet_channel_old=' + encodeURIComponent(document.getElementById('pushbullet_channel_old').value)
+'&tweet_pass_old=' + encodeURIComponent(document.getElementById('tweet_pass_old').value)
  ); alert(':: Save Setting ::'); return false">
 <div class="setting_div" >
 <h3>Alert Intrude Setting</h3>
@@ -157,43 +131,6 @@ include('setting_function.php');
     <td>
       <input id="tweet_pass_old" type="hidden" value="<? echo $twitter_pass; ?>"> 
       <input id="tweet_pass" type="password" value="<? echo $twitter_pass; ?>"> 
-    </td>
-  </tr>
-</table>
-</fieldset>
-  <fieldset class="fieldset_alert">
-    <legend class="legend_setting">Pushbullet</legend>
-      <table class="table_setting">
-        <tr>
-          <td height="25" width="150" class="td_right">Status</td>
-          <td width="10">:</td>
-          <td>
-            <input type="hidden" id="pushbullet_on_old" value="<? echo $pushbullet_on;?>">
-            <input id="pushbullet_on" type="checkbox" <? echo $pushbullet_on;?>> 
-          </td>
-      </tr>
-    <tr>
-    <td height="25" class="td_right">Massage</td>
-    <td>:</td>
-    <td>
-      <input type="hidden" id="pushbullet_msg_old" value="<? echo $pushbullet_msg;?>">
-      <textarea id="pushbullet_msg"rows="2" maxlength="200" cols="50"><? echo $pushbullet_msg;?></textarea>
-    </td>
-  </tr>
-  <tr>
-    <td height="25" class="td_right">TOKEN</td>
-    <td>:</td>
-    <td>
-      <input id="pushbullet_token_old" type="hidden" value="<? echo $pushbullet_token; ?>"> 
-      <input id="pushbullet_token" type="text" value="<? echo $pushbullet_token; ?>"> 
-    </td>
-  </tr>
-  <tr>
-    <td height="25" class="td_right">Channel</td>
-    <td>:</td>
-    <td>
-      <input id="pushbullet_channel_old" type="hidden" value="<? echo $pushbullet_channel; ?>"> 
-      <input id="pushbullet_channel" type="text" value="<? echo $pushbullet_channel; ?>"> 
     </td>
   </tr>
 </table>

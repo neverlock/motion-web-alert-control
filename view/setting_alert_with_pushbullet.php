@@ -37,7 +37,7 @@ include('setting_function.php');
  $('#powerdown_on').attr('disabled', (this.checked) ? true : false);
  $('#twitter_on').attr('disabled', (this.checked) ? true : false);
  $('#sms_on').attr('disabled', (this.checked) ? true : false);
- $('#pushbullet_on').attr('disabled', (this.checked) ? true: false);
+ $('#pushbullet_on').attr('disable', (this.checked) ? true: false);
  $('[name=alert_on]').val(this.checked ? '0' : '1'); "> 
     </td>
     <td height="30" width="150" class="td_right">SMS Alert</td>
@@ -76,6 +76,8 @@ include('setting_function.php');
       <input id="powerdown_on" type="checkbox" <? echo $check[$powerdown_on].' '.$dis[$alert_on];?>
       onclick=" $('[name=powerdown_on]').val(this.checked ? '0' : '1'); "> 
     </td>
+  </tr>
+  <tr>
     <td height="30" class="td_right">Pushbullet Alert</td>
     <td>:</td>
     <td>
